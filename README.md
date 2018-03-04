@@ -1,13 +1,17 @@
 #Vim
 
-#NERDtree
-#NERDcommenter
-#auto-pairs
-#.vimrc para programacao em C
+-NERDtree
+
+-NERDcommenter
+
+-auto-pairs
+
+-.vimrc para programacao em C
 
 #bash
 
-#perfil
-#atalhos
+-perfil
+
+-atalhos
 
 #polybar
