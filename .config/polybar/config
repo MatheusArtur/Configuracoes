@@ -55,7 +55,7 @@ font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = Wuncon Siji:pixelsize=9;1
 
 #modules-left = i3
-modules-left = i3 mpd
+modules-left = i3 spotify
 #modules-center = mpd
 #modules-right = volume wlan eth battery temperature date
 modules-right = home filesystem volume wlan eth battery temperature date
@@ -409,4 +409,10 @@ screenchange-reload = true
 [global/wm]
 margin-top = 5
 margin-bottom = 5
+
+[module/spotify]
+type = custom/script
+exec = ~/.config/polybar/spotify.sh %artist% - %title%
+tail = true
+interval = 2
 
