@@ -1,43 +1,38 @@
 " Vim Otimizado para C.
 " Autor: Matheus Artur
-"
+
 " Carregar o pathogen (Para plugins, etc.) 
 execute pathogen#infect()
 execute pathogen#helptags()
-
 " Basico
+set nocp
 filetype plugin on
 set relativenumber
 set enc=utf-8
 set fenc=utf-8
 set termencoding=utf-8
 set nocompatible
-" use indentation of previous line
+" Identifica linhas 
 set autoindent
-" use intelligent indentation for C
+" Identifica linguagem
 set smartindent
-" configure tabwidth and insert spaces instead of tabs
-set tabstop=4        " tab width is 4 spaces
-set shiftwidth=4     " indent also with 4 spaces
-set expandtab        " expand tabs to spaces
-" wrap lines at 120 chars. 80 is somewaht antiquated with nowadays displays.
+" Tab para 4 espacos
+set tabstop=4        
+set shiftwidth=4    
+set expandtab      
+" Caracteres por linha 
 set textwidth=120
-" turn syntax highlighting on
+" Sintaxe colorida 
 set t_Co=256
 syntax on
-" colorscheme wombat256
-" turn line numbers on
+" Ativar o numero de linhas (na lateral) 
 set number
-" highlight matching braces
+" Dar match em parenteses, cochetes, etc.. 
 set showmatch
-" Enhanced keyboard mappings
-nmap <F1> :w<CR>
+" Mapeamento avançado
+nmap <F1> :w<CR> 
 imap <F1> <ESC>:w<CR>i
 nmap <F2> :wq<CR>
 imap <F2> <ESC>:wq<CR>i
-map <F3> :w <CR> :!clear && gcc % -o %< && ./%< <CR>
+map <F3> :w <CR> :!clear && gcc % -lm -o %< && ./%< <CR>
 map <F4> :w <CR> :!clear && gcc % <CR>
-map <F5> :w<CR>
-
-autocmd! BufNewFile,BufRead *.pde setlocal ft=arduino
-autocmd! BufNewFile,BufRead *.ino setlocal ft=arduino

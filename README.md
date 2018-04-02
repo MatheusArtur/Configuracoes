@@ -8,10 +8,4 @@
 
 -.vimrc para programacao em C
 
-#bash
-
--perfil
-
--atalhos
-
-#polybar
+-c.vim, snippets e o krl a 4

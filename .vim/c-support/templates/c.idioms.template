@@ -31,7 +31,7 @@ static void<CURSOR>
 int main()
 {<CURSOR>
 <SPLIT>	return 0;
-}				/* ----------  end of function main  ---------- */
+}				
 == Idioms.enum == map:ie, shortcut:e  ==
 enum |?ENUM_NAME| {<CURSOR>
 <SPLIT>};				/* ----------  end of enum |ENUM_NAME|  ---------- */
