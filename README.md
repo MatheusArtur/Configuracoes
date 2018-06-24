@@ -1,1 +1,1 @@
-It just werks.
+# A nice, friendly vim configuration

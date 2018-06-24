@@ -1,13 +1,12 @@
-" Vim for LaTeX and C programming
+" My personal .vimrc for LaTeX, C and Lisp
 "
 " Autor: Matheus Artur (macc@ic.ufal.br)
-" C stuff adapted from: https://gist.github.com/rocarvaj/2513367 
-" LaTex stuff from: https://github.com/LukeSmithxyz
+" Adapted from: https://github.com/LukeSmithxyz
 
-
-" Load pathogen
-    execute pathogen#infect()
-    execute pathogen#helptags()
+let mapleader =" "
+" Load Pathogen for plugins:
+	execute pathogen#infect()
+	execute pathogen#helptags()
 
 """ Basic
     filetype plugin on
@@ -38,9 +37,9 @@
     set showmatch
 
 " configure tabwidth and insert spaces instead of tabs
-    set tabstop=4      
-    set shiftwidth=4  
-    set expandtab    
+    set tabstop=4
+    set shiftwidth=4
+    set expandtab
 
 " Shortcutting split navigation, saving a keypress:
     map <C-h> <C-w>h
@@ -52,32 +51,72 @@
     set splitbelow
     set splitright
 
+" Open the selected text in a split (i.e. should be a file).
+	map <leader>o "oyaW:sp <C-R>o<CR>
+	xnoremap <leader>o "oy<esc>:sp <C-R>o<CR>
+	vnoremap <leader>o "oy<esc>:sp <C-R>o<CR>
+
+" Open corresponding.pdf
+	map <leader>p :!mupdf <c-r>%<backspace><backspace><backspace>pdf &<CR><CR>
+
+" Compiler 
+	map <leader>c :!~/.vim/compiler <c-r>%<CR>
+
 " Interpret .md files, etc. as .markdown
-    let g:vimwiki_ext2syntax = {'.Rmd': 'markdown', '.rmd': 'markdown','.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
+	let g:vimwiki_ext2syntax = {'.Rmd': 'markdown', '.rmd': 'markdown','.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
+
+" Make calcurse notes markdown compatible:
+	autocmd BufRead,BufNewFile /tmp/calcurse*,~/.calcurse/notes/* set filetype=markdown
+
+" Runs a script that cleans out tex build files whenever I close out of a .tex file.
+	autocmd VimLeave *.tex !texclear
+
+" C-T for new tab
+	nnoremap <C-t> :tabnew<cr>
+
+" Navigating with guides
+	inoremap <Space><Tab> <Esc>/<++><Enter>"_c4l
+	vnoremap <Space><Tab> <Esc>/<++><Enter>"_c4l
+	map <Space><Tab> <Esc>/<++><Enter>"_c4l
+	inoremap ;gui <++>
 
 " Copy selected text to system clipboard (requires xclip installed):
     vnoremap <C-c> "cy<esc>:!echo -n '<C-R>c' \|<space>xclip<CR><enter>
 
-" Open corresponding.pdf
-    map <leader>p :!mupdf <c-r>%<backspace><backspace><backspace>pdf &<CR><CR>
+
+""" Easymotion mappings
+
+" char to char
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+
+" {char}{char} to move to {char}{char}
+nmap s <Plug>(easymotion-overwin-f2)
+"
+"" Move to line
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
+
 
 """ Keyboard mappings
 
-" Spell-check set to F1(English) and F2(Portuguese):
-    map <F1> :setlocal spell! spelllang=en_us,es<CR>
-    map <F2> :setlocal spell! spelllang=pt_br,es<CR>
+" Simple Stuff
+    map <F1> :q!<CR>
+    nmap <F2> :w<CR>
+    nmap <F3> :wq<CR>
 
 " Get line, word and character counts with F3:
-    map <F3> :!wc <C-R>%<CR>
+    map <F4> :!wc <C-R>%<CR>
 
-" Compiles and run the code with F4:
-    map <F4> :w <CR> :!clear && gcc % -o %< && ./%< <CR>
+ " Spell-check set to F5(English) and F6(Portuguese):
+    map <F5> :setlocal spell! spelllang=en_us<CR>
+    map <F6> :setlocal spell! spelllang=pt_br<CR>
+	map <F7> :!mupdf ~/.vim/c-support/doc/c-hotkeys.pdf<CR>
 
-" Simple Stuff 
-    nmap <F5> :w<CR>
-    imap <F5> <ESC>:w<CR>i
-    nmap <F6> :wq<CR>
-    map <F7> :q!<CR>
 
  "____        _                  _
 "/ ___| _ __ (_)_ __  _ __   ___| |_ ___
@@ -165,10 +204,3 @@
 	autocmd Filetype rmd map <F5> :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
 	autocmd Filetype rmd inoremap ;r ```{r}<CR>```<CR><CR><esc>2kO
 	autocmd Filetype rmd inoremap ;p ```{python}<CR>```<CR><CR><esc>2kO
-
-" ------------------------------------- TESTING ZONE ------------------------------------- "
-"
-"
-"
-"
-" --- EOF --- "
