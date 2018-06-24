@@ -60,7 +60,7 @@ let mapleader =" "
 	map <leader>p :!mupdf <c-r>%<backspace><backspace><backspace>pdf &<CR><CR>
 
 " Compiler 
-	map <leader>c :!~/.vim/compiler <c-r>%<CR>
+	map <leader>c :w <CR> :!~/.vim/compiler <c-r>%<CR>
 
 " Interpret .md files, etc. as .markdown
 	let g:vimwiki_ext2syntax = {'.Rmd': 'markdown', '.rmd': 'markdown','.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
@@ -104,13 +104,14 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 """ Keyboard mappings
 
+" Get line, word and character counts with F1:
+    map <F1> :!wc <C-R>%<CR>
+
 " Simple Stuff
-    map <F1> :q!<CR>
     nmap <F2> :w<CR>
     nmap <F3> :wq<CR>
+    map <F4> :q!<CR>
 
-" Get line, word and character counts with F3:
-    map <F4> :!wc <C-R>%<CR>
 
  " Spell-check set to F5(English) and F6(Portuguese):
     map <F5> :setlocal spell! spelllang=en_us<CR>
